@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
         body.linearVelocity = new Vector2(horizontalInput * speed, body.linearVelocity.y);
 
 
