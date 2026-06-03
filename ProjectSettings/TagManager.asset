@@ -6,12 +6,17 @@ TagManager:
   tags:
   - Ground
   - Walls
+<<<<<<< Updated upstream
   - Spikes
+=======
+  - Goal
+  - Background
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - 
@@ -43,6 +48,12 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 3053760399
+    locked: 0
+  - name: Ground
+    uniqueID: 3817581159
     locked: 0
   m_RenderingLayers:
   - Default
