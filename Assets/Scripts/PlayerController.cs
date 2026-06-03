@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float speed;
+    [SerializeField] private float jumpForce;
     private bool grounded;
 
     private Rigidbody2D body;// "public" means youo can edit directly in Unity editor
@@ -20,7 +21,7 @@ public class PlayerController : MonoBehaviour
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         body.linearVelocity = new Vector2(horizontalInput * speed, body.linearVelocity.y);
 
-
+/*
         if (horizontalInput > 0.01f)
         {
             transform.localScale = Vector3.one;
@@ -29,7 +30,7 @@ public class PlayerController : MonoBehaviour
         {
             transform.localScale = new Vector3(-1, 1, 1);
         }
-
+*/
 
         if (Input.GetKey(KeyCode.Space) && grounded)
         {
@@ -42,7 +43,7 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        body.linearVelocity = new Vector2(body.linearVelocity.x, speed);
+        body.linearVelocity = new Vector2(body.linearVelocity.x, jumpForce);
         grounded = false;
     }
 
