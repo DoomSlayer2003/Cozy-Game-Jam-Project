@@ -7,12 +7,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float jumpForce;
     private bool grounded;
+    Vector2 startPosition;
 
     private Rigidbody2D body;// "public" means youo can edit directly in Unity editor
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
-        body = GetComponent<Rigidbody2D>();
+         body = GetComponent<Rigidbody2D>();
+        startPosition = transform.position;
 
     }
 
@@ -53,6 +55,11 @@ public class PlayerController : MonoBehaviour
         {
             grounded = true;
         }
+    }
+
+    public void Die()
+    {
+        transform.position = startPosition;
     }
 
     private void OnTriggerEnter2D(Collider2D trigger)
