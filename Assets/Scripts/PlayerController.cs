@@ -7,15 +7,28 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float jumpForce;
     private bool grounded;
+    
+    // tells if we are within trigger of USB block to switch USB location
     public bool switchConfirm;
+    // tells if we are going to start talking to the game manager to make the USB switch
     public bool switchAction;
+    
+    // If true, the USB is ready to go to the block
+    // so if false the USB should come back to the player instead
+    public bool USBtoBlock;
+
+    [SerializeField] private GameObject gameManager;
+    GameManager gmScript;
+
 
     private Rigidbody2D body;// "public" means youo can edit directly in Unity editor
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
         body = GetComponent<Rigidbody2D>();
+        gmScript = gameManager.GetComponent<GameManager>();
         switchAction = false;
+        USBtoBlock = false;
     }
 
     private void Update()
@@ -39,10 +52,38 @@ public class PlayerController : MonoBehaviour
         
         if (Input.GetKey(KeyCode.J) && switchConfirm)
         {
+            //
+            if (switchAction != true)
+            {
+                switchAction = true;
+            }
+            else
+            {
+                if (gmScript.playerUSB)
+                {
+                    USBtoBlock = true;
+                }
+                else
+                {
+                    USBtoBlock = false;
+                }
+            }
+            //
+            /*
             switchAction = true;
+            if (gmScript.playerUSB)
+            {
+                USBtoBlock = true;
+            }
+            else
+            {
+                USBtoBlock = false;
+            }
+            */
         }
         else
         {
+            // usb switch was not within trigger distance while hitting J key or we don't hit J key while within trigger distance
             switchAction = false;
         }
 

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -7,10 +8,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject USBblock;
     [SerializeField] private GameObject player;
     PlayerController pController;
+    
+    // If true, player has USB
+    public bool playerUSB;
 
     void Awake()
     {
         pController = player.GetComponent<PlayerController>();
+        playerUSB = true;
+        //USBobject.transform..SetparentworldPositionStays(false);
     }
 
     void Start()
@@ -24,7 +30,32 @@ public class GameManager : MonoBehaviour
         Debug.Log(pController.switchAction);
         if (pController.switchAction)
         {
-            USBobject.transform.SetParent(USBblock.transform);
+            if (pController.USBtoBlock)
+            {
+                StartCoroutine(BlockParent());
+            }
+            else
+            {
+                StartCoroutine(PlayerParent());
+            }
+
         }
+    }
+
+    // sets USB Block as parent to USB
+    IEnumerator BlockParent()
+    {
+        USBobject.transform.SetParent(USBblock.transform, false);
+        yield return new WaitForSeconds(0.5f);
+        playerUSB = false;
+        yield return null;
+    }
+    // sets Player as parent to USB
+    IEnumerator PlayerParent()
+    {
+        USBobject.transform.SetParent(player.transform, false);
+        yield return new WaitForSeconds(0.5f);
+        playerUSB = true;
+        yield return null;
     }
 }
