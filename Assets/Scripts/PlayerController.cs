@@ -7,13 +7,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float jumpForce;
     private bool grounded;
+    public bool switchConfirm;
+    public bool switchAction;
 
     private Rigidbody2D body;// "public" means youo can edit directly in Unity editor
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
         body = GetComponent<Rigidbody2D>();
-
+        switchAction = false;
     }
 
     private void Update()
@@ -21,23 +23,28 @@ public class PlayerController : MonoBehaviour
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         body.linearVelocity = new Vector2(horizontalInput * speed, body.linearVelocity.y);
 
-/*
-        if (horizontalInput > 0.01f)
+        if (horizontalInput > 0.1f)
         {
-            transform.localScale = Vector3.one;
+            transform.localScale = new Vector3(1, 1, 1);
         }
-        else if (horizontalInput < 0.01f)
+        else if (horizontalInput < -0.1f)
         {
             transform.localScale = new Vector3(-1, 1, 1);
         }
-*/
 
         if (Input.GetKey(KeyCode.Space) && grounded)
         {
             Jump();
         }
-
-
+        
+        if (Input.GetKey(KeyCode.J) && switchConfirm)
+        {
+            switchAction = true;
+        }
+        else
+        {
+            switchAction = false;
+        }
 
     }
 
@@ -59,8 +66,28 @@ public class PlayerController : MonoBehaviour
     {
         if (trigger.gameObject.tag == "Goal")
         {
-            Debug.Log("scene switch");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+        if (trigger.gameObject.tag == "USB-Switch")
+        {
+            switchConfirm = true;
+            Debug.Log(switchConfirm);
+            if (Input.GetKey(KeyCode.J))
+            {
+                Debug.Log("Switch hit");
+            }
+        }
+    }
+    private void OnTriggerExit2D(Collider2D trigger)
+    {
+        if (trigger.gameObject.tag == "USB-Switch")
+        {
+            switchConfirm = false;
+            Debug.Log(switchConfirm);
+            if (Input.GetKey(KeyCode.J))
+            {
+                Debug.Log("Switch miss");
+            }
         }
     }
 
