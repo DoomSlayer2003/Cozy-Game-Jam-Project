@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject gameManager;
     GameManager gmScript;
 
+    Vector2 startPosition;
 
     private Rigidbody2D body;// "public" means youo can edit directly in Unity editor
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -29,6 +30,8 @@ public class PlayerController : MonoBehaviour
         gmScript = gameManager.GetComponent<GameManager>();
         switchAction = false;
         USBtoBlock = false;
+        startPosition = transform.position;
+
     }
 
     private void Update()
@@ -101,6 +104,11 @@ public class PlayerController : MonoBehaviour
         {
             grounded = true;
         }
+    }
+
+    public void Die()
+    {
+        transform.position = startPosition;
     }
 
     private void OnTriggerEnter2D(Collider2D trigger)
