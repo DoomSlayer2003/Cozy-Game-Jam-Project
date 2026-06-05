@@ -7,7 +7,7 @@ TagManager:
   - Ground
   - Walls
   - Goal
-  - Plug
+  - USB-Switch
   layers:
   - Default
   - TransparentFX
