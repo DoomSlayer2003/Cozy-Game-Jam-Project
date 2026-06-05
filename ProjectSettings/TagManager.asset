@@ -6,8 +6,17 @@ TagManager:
   tags:
   - Ground
   - Walls
+<<<<<<< HEAD
   - Goal
   - Plug
+=======
+<<<<<<< Updated upstream
+  - Spikes
+=======
+  - Goal
+  - Background
+>>>>>>> Stashed changes
+>>>>>>> Stefano
   layers:
   - Default
   - TransparentFX
@@ -45,8 +54,16 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+<<<<<<< HEAD
   - name: Ground
     uniqueID: 215581307
+=======
+  - name: Background
+    uniqueID: 3053760399
+    locked: 0
+  - name: Ground
+    uniqueID: 3817581159
+>>>>>>> Stefano
     locked: 0
   m_RenderingLayers:
   - Default

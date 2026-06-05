@@ -119,6 +119,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+<<<<<<< HEAD
 --- !u!1001 &299065461
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -267,6 +268,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> Stefano
 --- !u!1001 &800550979
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -324,6 +327,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 485cd8b786cb3b844b642c5042387a9e, type: 3}
+<<<<<<< HEAD
 --- !u!1001 &1125004394
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -381,6 +385,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6214afb46e18c25429388f13cf77a3d7, type: 3}
+=======
+>>>>>>> Stefano
 --- !u!1001 &1185368352
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -451,7 +457,11 @@ GameObject:
   - component: {fileID: 1219380265}
   - component: {fileID: 1219380269}
   - component: {fileID: 1219380268}
+<<<<<<< HEAD
   - component: {fileID: 1219380270}
+=======
+  - component: {fileID: 1219380267}
+>>>>>>> Stefano
   m_Layer: 0
   m_Name: Tilemap
   m_TagString: Ground
@@ -1076,8 +1086,11 @@ Tilemap:
   m_TileSpriteArray:
   - m_RefCount: 53
     m_Data: {fileID: 7482667652216324306, guid: 6aaef6c1bc7b9974ab28873b1e2f4789, type: 3}
+<<<<<<< HEAD
   - m_RefCount: 0
     m_Data: {fileID: 0}
+=======
+>>>>>>> Stefano
   m_TileMatrixArray:
   - m_RefCount: 53
     m_Data:
@@ -1100,8 +1113,11 @@ Tilemap:
   m_TileColorArray:
   - m_RefCount: 53
     m_Data: {r: 1, g: 1, b: 1, a: 1}
+<<<<<<< HEAD
   - m_RefCount: 0
     m_Data: {r: 4e-44, g: 4e-44, b: 4e-44, a: 4e-44}
+=======
+>>>>>>> Stefano
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1126,6 +1142,55 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+<<<<<<< HEAD
+=======
+--- !u!61 &1219380267
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219380263}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -2.5, y: 1}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 17, y: 10}
+  m_EdgeRadius: 0
+>>>>>>> Stefano
 --- !u!66 &1219380268
 CompositeCollider2D:
   m_ObjectHideFlags: 0
@@ -1198,6 +1263,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+<<<<<<< HEAD
 --- !u!19719996 &1219380270
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -1236,6 +1302,8 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+=======
+>>>>>>> Stefano
 --- !u!1 &1544491661
 GameObject:
   m_ObjectHideFlags: 0
@@ -1484,6 +1552,9 @@ SceneRoots:
   - {fileID: 1544491663}
   - {fileID: 2125622410}
   - {fileID: 800550979}
+<<<<<<< HEAD
   - {fileID: 1125004394}
   - {fileID: 299065461}
   - {fileID: 609879808}
+=======
+>>>>>>> Stefano
