@@ -8,15 +8,7 @@ TagManager:
   - Walls
 <<<<<<< HEAD
   - Goal
-  - Plug
-=======
-<<<<<<< Updated upstream
-  - Spikes
-=======
-  - Goal
-  - Background
->>>>>>> Stashed changes
->>>>>>> Stefano
+  - USB-Switch
   layers:
   - Default
   - TransparentFX
