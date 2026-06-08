@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 //Tells the computer to ad the input system to it reconzies keyboard inputs
 
 public class PlayerController : MonoBehaviour
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour
     GameManager gmScript;
 
     Vector2 startPosition;
+    Vector3 startScale;
 
     private Rigidbody2D body;// "public" means youo can edit directly in Unity editor
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -31,7 +33,7 @@ public class PlayerController : MonoBehaviour
         switchAction = false;
         USBtoBlock = false;
         startPosition = transform.position;
-
+        startScale = transform.localScale;
     }
 
     private void Update()
@@ -41,14 +43,14 @@ public class PlayerController : MonoBehaviour
 
         if (horizontalInput > 0.1f)
         {
-            transform.localScale = new Vector3(1, 1, 1);
+            transform.localScale = new Vector3(startScale.x, startScale.y, startScale.z);
         }
         else if (horizontalInput < -0.1f)
         {
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(-startScale.x, startScale.y, startScale.z);
         }
 
-        if (Input.GetKey(KeyCode.Space) && grounded)
+        if (Input.GetKeyDown(KeyCode.Space) && grounded)
         {
             Jump();
         }

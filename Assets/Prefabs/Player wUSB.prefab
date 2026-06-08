@@ -104,6 +104,18 @@ PrefabInstance:
       value: Player wUSB
       objectReference: {fileID: 0}
     - target: {fileID: 2125598915136372072, guid: c3be084ca6a26bc46b8d7214f53c93cd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.4172
+      objectReference: {fileID: 0}
+    - target: {fileID: 2125598915136372072, guid: c3be084ca6a26bc46b8d7214f53c93cd, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.4172
+      objectReference: {fileID: 0}
+    - target: {fileID: 2125598915136372072, guid: c3be084ca6a26bc46b8d7214f53c93cd, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.4172
+      objectReference: {fileID: 0}
+    - target: {fileID: 2125598915136372072, guid: c3be084ca6a26bc46b8d7214f53c93cd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.21
       objectReference: {fileID: 0}
