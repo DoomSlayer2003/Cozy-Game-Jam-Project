@@ -109,6 +109,7 @@ public class PlayerController : MonoBehaviour
     public void Die()
     {
         transform.position = startPosition;
+        Application.LoadLevel(Application.loadedLevel);
     }
 
     private void OnTriggerEnter2D(Collider2D trigger)
