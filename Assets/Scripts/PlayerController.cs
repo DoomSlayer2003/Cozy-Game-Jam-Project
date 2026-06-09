@@ -102,7 +102,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Ground")
+        if ((collision.gameObject.tag == "Ground") || (collision.gameObject.tag == "Box"))
         {
             grounded = true;
         }
@@ -111,7 +111,8 @@ public class PlayerController : MonoBehaviour
     public void Die()
     {
         transform.position = startPosition;
-        Application.LoadLevel(Application.loadedLevel);
+        //Application.LoadLevel(Application.loadedLevel);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void OnTriggerEnter2D(Collider2D trigger)

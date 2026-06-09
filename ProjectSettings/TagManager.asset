@@ -8,6 +8,9 @@ TagManager:
   - Walls
   - Goal
   - USB-Switch
+  - Box
+  - Door
+  - USB-Key
   layers:
   - Default
   - TransparentFX

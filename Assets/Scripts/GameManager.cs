@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     PlayerController pController;
     // If true, player has USB
     public bool playerUSB;
+    private CapsuleCollider2D USBcollider;
 
     [SerializeField] private GameObject interactGrid;
 
@@ -18,6 +19,8 @@ public class GameManager : MonoBehaviour
         pController = player.GetComponent<PlayerController>();
         playerUSB = true;
         interactGrid.SetActive(false);
+        USBcollider = USBobject.GetComponent<CapsuleCollider2D>();
+        USBcollider.enabled = false;
         //USBobject.transform..SetparentworldPositionStays(false);
     }
 
@@ -29,7 +32,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(pController.switchAction);
+        //Debug.Log(pController.switchAction);
         if (pController.switchAction)
         {
             if (pController.USBtoBlock)
@@ -57,6 +60,7 @@ public class GameManager : MonoBehaviour
     IEnumerator BlockParent()
     {
         USBobject.transform.SetParent(USBblock.transform, false);
+        USBcollider.enabled = true;
         yield return new WaitForSeconds(0.1f);
         interactGrid.SetActive(true);
         yield return new WaitForSeconds(0.5f);
@@ -67,6 +71,7 @@ public class GameManager : MonoBehaviour
     IEnumerator PlayerParent()
     {
         USBobject.transform.SetParent(player.transform, false);
+        USBcollider.enabled = false;
         yield return new WaitForSeconds(0.1f);
         interactGrid.SetActive(false);
         yield return new WaitForSeconds(0.5f);
