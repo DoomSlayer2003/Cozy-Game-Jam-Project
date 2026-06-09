@@ -14,7 +14,6 @@ public class Button : MonoBehaviour
 
     void Awake()
     {
-        Debug.Log("Awake");
         doorCounter = 0f;
         buttonActive = false;
         firstActive = false;
@@ -25,11 +24,11 @@ public class Button : MonoBehaviour
     {
         if (buttonActive)
         {
-            Debug.Log("Active check");
+            //Debug.Log("Active check");
             firstActive = true;
             if (objectToActivate.tag == "Door")
             {
-                Debug.Log("Door activated");
+                //Debug.Log("Door activated");
                 DoorActivate();
             }
         }
@@ -37,7 +36,7 @@ public class Button : MonoBehaviour
         {
             if (objectToActivate.tag == "Door")
             {
-                Debug.Log("Door deactivated");
+                //Debug.Log("Door deactivated");
                 DoorDeactivate();
             }
         }
@@ -48,12 +47,12 @@ public class Button : MonoBehaviour
     {
         if (collision.gameObject.tag == "Box")
         {
-            Debug.Log("Box enter");
+            //Debug.Log("Box enter");
             buttonActive = true;
         }
         if ((collision.gameObject.tag == "USB-Key") && (gmScript.playerUSB == false))
         {
-            Debug.Log("USB enter");
+            //Debug.Log("USB enter");
             buttonActive = true;
         }
     }
@@ -66,7 +65,7 @@ public class Button : MonoBehaviour
         }
         if ((collision.gameObject.tag == "USB-Key") && (gmScript.playerUSB == true))
         {
-            Debug.Log("USB taken");
+            //Debug.Log("USB taken");
             buttonActive = false;
         }
     }
@@ -75,7 +74,7 @@ public class Button : MonoBehaviour
     {
         if (doorCounter >= 0.55f)
         {
-            Debug.Log("Door stopped");
+            //Debug.Log("Door stopped");
             doorCounter = 0.55f;
         }
         else
@@ -92,7 +91,7 @@ public class Button : MonoBehaviour
     {
         if (doorCounter <= 0f)
         {
-            Debug.Log("Door returned");
+            //Debug.Log("Door returned");
             doorCounter = 0f;
         }
         else

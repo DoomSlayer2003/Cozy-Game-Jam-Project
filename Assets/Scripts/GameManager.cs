@@ -5,7 +5,8 @@ public class GameManager : MonoBehaviour
 {
     
     [SerializeField] private GameObject USBobject;
-    [SerializeField] private GameObject USBblock;
+    [SerializeField] private GameObject USBplug;
+    [SerializeField] private GameObject USBswitch;
     [SerializeField] private GameObject player;
     PlayerController pController;
     // If true, player has USB
@@ -33,11 +34,23 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         //Debug.Log(pController.switchAction);
+        if (pController.plugAction)
+        {
+            if (pController.USBtoPlug)
+            {
+                StartCoroutine(PlugParent());
+            }
+            else
+            {
+                StartCoroutine(PlayerParent());
+            }
+        }
+
         if (pController.switchAction)
         {
-            if (pController.USBtoBlock)
+            if (pController.USBtoSwitch)
             {
-                StartCoroutine(BlockParent());
+                StartCoroutine(SwitchParent());
             }
             else
             {
@@ -56,17 +69,6 @@ public class GameManager : MonoBehaviour
 */
     }
 
-    // sets USB Block as parent to USB
-    IEnumerator BlockParent()
-    {
-        USBobject.transform.SetParent(USBblock.transform, false);
-        USBcollider.enabled = true;
-        yield return new WaitForSeconds(0.1f);
-        interactGrid.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
-        playerUSB = false;
-        yield return null;
-    }
     // sets Player as parent to USB
     IEnumerator PlayerParent()
     {
@@ -78,4 +80,27 @@ public class GameManager : MonoBehaviour
         playerUSB = true;
         yield return null;
     }
+    // sets USB Plug as parent to USB
+    IEnumerator PlugParent()
+    {
+        USBobject.transform.SetParent(USBplug.transform, false);
+        USBcollider.enabled = true;
+        yield return new WaitForSeconds(0.1f);
+        interactGrid.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        playerUSB = false;
+        yield return null;
+    }
+    // sets USB Switch as parent to USB
+    IEnumerator SwitchParent()
+    {
+        USBobject.transform.SetParent(USBswitch.transform, false);
+        USBcollider.enabled = true;
+        yield return new WaitForSeconds(0.1f);
+        interactGrid.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        playerUSB = false;
+        yield return null;
+    }
+
 }

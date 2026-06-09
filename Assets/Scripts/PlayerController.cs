@@ -9,14 +9,19 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpForce;
     private bool grounded;
     
-    // tells if we are within trigger of USB block to switch USB location
+    // tells if we are within trigger of USB block/plug to switch USB location
+    public bool plugConfirm;
+    // tells if we are going to start talking to the game manager to make the USB switch on a plug
+    public bool plugAction;
+
+    // similar to plug confirm/action but instead for the USB-Switch objects, aka buttons
     public bool switchConfirm;
-    // tells if we are going to start talking to the game manager to make the USB switch
     public bool switchAction;
     
     // If true, the USB is ready to go to the block
     // so if false the USB should come back to the player instead
-    public bool USBtoBlock;
+    public bool USBtoPlug; //Plug
+    public bool USBtoSwitch; //button
 
     [SerializeField] private GameObject gameManager;
     GameManager gmScript;
@@ -31,7 +36,9 @@ public class PlayerController : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         gmScript = gameManager.GetComponent<GameManager>();
         switchAction = false;
-        USBtoBlock = false;
+        plugAction = false;
+        USBtoPlug = false;
+        USBtoSwitch = false;
         startPosition = transform.position;
         startScale = transform.localScale;
     }
@@ -55,9 +62,9 @@ public class PlayerController : MonoBehaviour
             Jump();
         }
         
+        // determine what will happen when player hits J near USB *switch*
         if (Input.GetKey(KeyCode.J) && switchConfirm)
         {
-            //
             if (switchAction != true)
             {
                 switchAction = true;
@@ -66,30 +73,43 @@ public class PlayerController : MonoBehaviour
             {
                 if (gmScript.playerUSB)
                 {
-                    USBtoBlock = true;
+                    USBtoSwitch = true;
                 }
                 else
                 {
-                    USBtoBlock = false;
+                    USBtoSwitch = false;
                 }
             }
-            //
-            /*
-            switchAction = true;
-            if (gmScript.playerUSB)
-            {
-                USBtoBlock = true;
-            }
-            else
-            {
-                USBtoBlock = false;
-            }
-            */
         }
         else
         {
-            // usb switch was not within trigger distance while hitting J key or we don't hit J key while within trigger distance
+            // usb plug was not within trigger distance while hitting J key or we don't hit J key while within trigger distance
             switchAction = false;
+        }
+
+        // determine what will happen when player hits J near USB *plug*
+        if (Input.GetKey(KeyCode.J) && plugConfirm)
+        {
+            if (plugAction != true)
+            {
+                plugAction = true;
+            }
+            else
+            {
+                if (gmScript.playerUSB)
+                {
+                    USBtoPlug = true;
+                }
+                else
+                {
+                    USBtoPlug = false;
+                }
+            }
+        }
+        else
+        {
+            // usb plug was not within trigger distance while hitting J key or we don't hit J key while within trigger distance
+            plugAction = false;
         }
 
     }
@@ -121,6 +141,7 @@ public class PlayerController : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
+        
         if (trigger.gameObject.tag == "USB-Switch")
         {
             switchConfirm = true;
@@ -128,6 +149,16 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKey(KeyCode.J))
             {
                 Debug.Log("Switch hit");
+            }
+        }
+        
+        if (trigger.gameObject.tag == "USB-Plug")
+        {
+            plugConfirm = true;
+            Debug.Log(plugConfirm);
+            if (Input.GetKey(KeyCode.J))
+            {
+                Debug.Log("Plug hit");
             }
         }
     }
@@ -140,6 +171,16 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKey(KeyCode.J))
             {
                 Debug.Log("Switch miss");
+            }
+        }
+
+        if (trigger.gameObject.tag == "USB-Plug")
+        {
+            plugConfirm = false;
+            Debug.Log(plugConfirm);
+            if (Input.GetKey(KeyCode.J))
+            {
+                Debug.Log("Plug miss");
             }
         }
     }
