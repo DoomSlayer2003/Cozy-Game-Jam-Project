@@ -327,8 +327,12 @@ MonoBehaviour:
   USBswitch: {fileID: 954268010}
   player: {fileID: 1916749672}
   playerUSB: 0
+  gmUSBtoPlug: 0
+  regButtonCheck: 0
+  usbButtonCheck: 0
   usbObjOrient: {fileID: 0}
   usbPlugOrient: {fileID: 0}
+  usbUp: 0
   interactGrid: {fileID: 1257451455}
 --- !u!4 &185923579
 Transform:
@@ -6912,6 +6916,10 @@ PrefabInstance:
     - target: {fileID: 4048049787466998841, guid: 7877996026159a841b39a2b213865e09, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8810114316962367307, guid: 7877996026159a841b39a2b213865e09, type: 3}
+      propertyPath: jumpForce
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8810114316962367307, guid: 7877996026159a841b39a2b213865e09, type: 3}
       propertyPath: gameManager

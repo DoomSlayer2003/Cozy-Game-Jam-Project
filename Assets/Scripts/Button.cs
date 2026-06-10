@@ -34,7 +34,7 @@ public class Button : MonoBehaviour
             firstActive = true;
 
             bcScript.regButtonCheck = true;
-            bcScript.ButtonCompare(1);
+            //bcScript.ButtonCompare(1);
             if (bcScript.noOverlapCheck)
             {
                 if (objectToActivate.tag == "Door")
@@ -47,7 +47,7 @@ public class Button : MonoBehaviour
         else if (!buttonActive && firstActive)
         {
             bcScript.regButtonCheck = false;
-            bcScript.ButtonCompare(1);
+            //bcScript.ButtonCompare(1);
             if (!bcScript.noOverlapCheck)
             {
                 if (objectToActivate.tag == "Door")

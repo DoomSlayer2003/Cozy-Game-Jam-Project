@@ -33,7 +33,7 @@ public class ButtonUSB : MonoBehaviour
             usbfirstActive = true;
 
             bcScript.usbButtonCheck = true;
-            bcScript.ButtonCompare(2);
+            //bcScript.ButtonCompare(2);
             if (bcScript.noOverlapCheck)
             {
                 if (objectToActivate.tag == "Door")
@@ -46,7 +46,7 @@ public class ButtonUSB : MonoBehaviour
         else if (!gmScript.gmUSBtoPlug && usbfirstActive)
         {
             bcScript.usbButtonCheck = false;
-            bcScript.ButtonCompare(2);
+            //bcScript.ButtonCompare(2);
             if (!bcScript.noOverlapCheck)
             {
                 if (objectToActivate.tag == "Door")
