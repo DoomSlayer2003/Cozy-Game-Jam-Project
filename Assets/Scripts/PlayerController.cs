@@ -153,7 +153,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D trigger)
     {
-        if (trigger.gameObject.tag == "Goal")
+        if (trigger.gameObject.tag == "Goal" && gmScript.playerUSB)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }

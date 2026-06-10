@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     Vector3 usbScale;
     Vector3 usbPos;
 
+    Quaternion usbPlugRot;
+
     [SerializeField] private GameObject interactGrid;
 
     void Awake()
@@ -33,12 +35,19 @@ public class GameManager : MonoBehaviour
         usbObjOrient = USBobject.transform;
         usbPos = usbObjOrient.localPosition;
         usbScale = usbObjOrient.localScale;
-        //usbPlugOrient = USBplug.transform;
-
+        
+        //usbPlugRot = Quaternion.identity;
+        usbPlugOrient = USBplug.transform;
+        usbPlugRot = usbPlugOrient.rotation;
+        Debug.Log(usbPlugOrient.localRotation.z);
+        Debug.Log(usbPlugRot.z);
+        Debug.Log(usbPlugRot.eulerAngles.z);
+        
         USBobject.transform.SetLocalPositionAndRotation(usbObjOrient.localPosition, usbObjOrient.localRotation);
         //USBobject.transform.localScale = Vector3.one;
 
         usbRotation = Quaternion.identity;
+        Debug.Log(usbRotation.eulerAngles);
         //usbRotation.eulerAngles = new Vector3(0, 0, -90);
         
         //apply the Quaternion.eulerAngles change to the gameObject
@@ -118,7 +127,13 @@ public class GameManager : MonoBehaviour
         //USBobject.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
         USBobject.transform.localPosition = new Vector3 (0, 12, 0);
         usbRotation.eulerAngles = new Vector3(0, 0, -90);
-        USBobject.transform.rotation = usbRotation;
+        //usbRotation.eulerAngles = new Vector3(0, 0, (usbPlugRot.z));
+        //USBobject.transform.Rotate(Vector3.forward, usbPlugRot.eulerAngles.z, Space.Self);
+        
+        //USBobject.transform.rotation.eulerAngles.z = usbPlugRot.eulerAngles.z;
+        
+        Debug.Log(usbRotation.eulerAngles);
+        //USBobject.transform.rotation = usbRotation;
         USBobject.transform.localScale = Vector3.one;
         //USBobject.transform.localScale = usbPlugOrient.lossyScale;
         USBcollider.enabled = true;
