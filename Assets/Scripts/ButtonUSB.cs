@@ -1,41 +1,50 @@
 using UnityEngine;
 using System.Collections;
 
-public class Button : MonoBehaviour
+public class ButtonUSB : MonoBehaviour
 {
 
     [SerializeField] private GameObject gameManager;
     GameManager gmScript;
     [SerializeField] private GameObject objectToActivate;
 
-    public bool firstActive;
-    public bool buttonActive;
-
+    public bool usbfirstActive;
+    public bool usbActive;
+    
     private float doorCounter;
-    string regObjName;
+    string usbObjName;
 
     void Awake()
     {
         doorCounter = 0f;
-        buttonActive = false;
-        firstActive = false;
+        usbActive = false;
+        usbfirstActive = false;
         gmScript = gameManager.GetComponent<GameManager>();
+        usbObjName = objectToActivate.name;
+        Debug.Log(usbDoorName);
     }
 
     void Update()
     {
-        if (buttonActive)
+        if (gmScript.gmUSBtoPlug) // AKA if button or whatever is active, the player doesn't have the USB anymore, therefore the USB is plugged into something
         {
             //Debug.Log("Active check");
-            firstActive = true;
-            if (objectToActivate.tag == "Door")
+            usbfirstActive = true;
+
+            gmScript.usbButtonCheck = true;
+            
+            if (gmScript.noOverlapCheck)
             {
-                //Debug.Log("Door activated");
-                DoorActivate();
+                if (objectToActivate.tag == "Door")
+                {
+                    //Debug.Log("Door activated");
+                    DoorActivate();
+                }                
             }
         }
-        else if (!buttonActive && firstActive)
+        else if (!gmScript.gmUSBtoPlug && usbfirstActive)
         {
+            gmScript.usbButtonCheck = false;
             if (objectToActivate.tag == "Door")
             {
                 //Debug.Log("Door deactivated");
@@ -47,28 +56,19 @@ public class Button : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Box")
-        {
-            //Debug.Log("Box enter");
-            buttonActive = true;
-        }
         if ((collision.gameObject.tag == "USB-Key") /*&& (gmScript.playerUSB == false)*/)
         {
             //Debug.Log("USB enter");
-            buttonActive = true;
+            usbActive = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Box")
-        {
-            buttonActive = false;
-        }
         if ((collision.gameObject.tag == "USB-Key") /*&& (gmScript.playerUSB == true)*/)
         {
             //Debug.Log("USB taken");
-            buttonActive = false;
+            usbActive = false;
         }
     }
 

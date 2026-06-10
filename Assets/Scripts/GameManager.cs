@@ -11,8 +11,10 @@ public class GameManager : MonoBehaviour
     PlayerController pController;
     // If true, player has USB
     public bool playerUSB;
+    public bool gmUSBtoPlug;
+    public bool regButtonCheck;
+    public bool usbButtonCheck;
     private CapsuleCollider2D USBcollider;
-    
     public Transform usbObjOrient;
     public Transform usbPlugOrient;
     Vector3 usbEulerAngles;
@@ -21,6 +23,7 @@ public class GameManager : MonoBehaviour
     Vector3 usbPos;
 
     Quaternion usbPlugRot;
+    public bool usbUp;
 
     [SerializeField] private GameObject interactGrid;
 
@@ -39,9 +42,9 @@ public class GameManager : MonoBehaviour
         //usbPlugRot = Quaternion.identity;
         usbPlugOrient = USBplug.transform;
         usbPlugRot = usbPlugOrient.rotation;
-        Debug.Log(usbPlugOrient.localRotation.z);
-        Debug.Log(usbPlugRot.z);
-        Debug.Log(usbPlugRot.eulerAngles.z);
+        //Debug.Log(usbPlugOrient.localRotation.z);
+        //Debug.Log(usbPlugRot.z);
+        //Debug.Log(usbPlugRot.eulerAngles.z);
         
         USBobject.transform.SetLocalPositionAndRotation(usbObjOrient.localPosition, usbObjOrient.localRotation);
         //USBobject.transform.localScale = Vector3.one;
@@ -73,10 +76,12 @@ public class GameManager : MonoBehaviour
         {
             if (pController.USBtoPlug)
             {
+                gmUSBtoPlug = true;
                 StartCoroutine(PlugParent());
             }
             else
             {
+                gmUSBtoPlug = true;
                 StartCoroutine(PlayerParent());
             }
         }
@@ -85,10 +90,12 @@ public class GameManager : MonoBehaviour
         {
             if (pController.USBtoSwitch)
             {
+                gmUSBtoPlug = true;
                 StartCoroutine(SwitchParent());
             }
             else
             {
+                gmUSBtoPlug = true;
                 StartCoroutine(PlayerParent());
             }
         }
@@ -104,14 +111,31 @@ public class GameManager : MonoBehaviour
 */
     }
 
+    void USBUpApply()
+    {
+        if (usbUp)
+        {
+            //Debug.Log("USB up, collider off");
+            USBcollider.enabled = false;
+        }
+        else
+        {
+            USBcollider.enabled = true;
+            //Debug.Log("USB not up, collider on");
+        }
+    }
+
     // sets Player as parent to USB
     IEnumerator PlayerParent()
     {
         USBobject.transform.SetParent(player.transform, false);
         USBobject.transform.SetLocalPositionAndRotation(usbObjOrient.localPosition, usbObjOrient.localRotation);
         USBobject.transform.localPosition = new Vector3(usbPos.x, 0, 0);
+        
         usbRotation.eulerAngles = new Vector3(0, 0, 0);
         USBobject.transform.rotation = usbRotation;
+        Debug.Log(usbRotation.eulerAngles);
+        
         USBobject.transform.localScale = new Vector3(usbScale.x, usbScale.y, usbScale.z);
         USBcollider.enabled = false;
         yield return new WaitForSeconds(0.1f);
@@ -126,17 +150,24 @@ public class GameManager : MonoBehaviour
         USBobject.transform.SetParent(USBplug.transform, false);
         //USBobject.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
         USBobject.transform.localPosition = new Vector3 (0, 12, 0);
-        usbRotation.eulerAngles = new Vector3(0, 0, -90);
-        //usbRotation.eulerAngles = new Vector3(0, 0, (usbPlugRot.z));
-        //USBobject.transform.Rotate(Vector3.forward, usbPlugRot.eulerAngles.z, Space.Self);
+
+        Vector3 plugRot = USBplug.transform.localRotation.eulerAngles;
+        //Debug.Log("plugRot " + plugRot);
+        //Debug.Log("plugRot.z " + plugRot.z);
+        //Debug.Log("USBplug " + USBplug.transform.eulerAngles.z);
+        if (plugRot.z <= 0.01f && plugRot.z >= -0.01f)
+        {
+            usbUp = true;
+        }
+        else
+        {
+            usbUp = false;
+        }
+        Quaternion rotation = Quaternion.Euler(0, 0, 180);
+        USBobject.transform.localRotation = rotation;
         
-        //USBobject.transform.rotation.eulerAngles.z = usbPlugRot.eulerAngles.z;
-        
-        Debug.Log(usbRotation.eulerAngles);
-        //USBobject.transform.rotation = usbRotation;
         USBobject.transform.localScale = Vector3.one;
-        //USBobject.transform.localScale = usbPlugOrient.lossyScale;
-        USBcollider.enabled = true;
+        USBUpApply();
         yield return new WaitForSeconds(0.1f);
         interactGrid.SetActive(true);
         yield return new WaitForSeconds(0.5f);

@@ -162,7 +162,7 @@ public class PlayerController : MonoBehaviour
 
         if (trigger.gameObject.tag == "USB-Key")
         {
-            Debug.Log("Enter key");
+            //Debug.Log("Enter key");
             grounded = true;
         }
 
@@ -172,7 +172,7 @@ public class PlayerController : MonoBehaviour
             //Debug.Log(switchConfirm);
             if (Input.GetKey(KeyCode.J))
             {
-                Debug.Log("Switch hit");
+                //Debug.Log("Switch hit");
             }
         }
         
@@ -182,7 +182,7 @@ public class PlayerController : MonoBehaviour
             //Debug.Log(plugConfirm);
             if (Input.GetKey(KeyCode.J))
             {
-                Debug.Log("Plug hit");
+                //Debug.Log("Plug hit");
             }
         }
     }
@@ -191,7 +191,7 @@ public class PlayerController : MonoBehaviour
     {
         if (trigger.gameObject.tag == "USB-Key")
         {
-            Debug.Log("Inside key");
+            //Debug.Log("Inside key");
             grounded = true;
         }
     }
@@ -204,7 +204,7 @@ public class PlayerController : MonoBehaviour
             //Debug.Log(switchConfirm);
             if (Input.GetKey(KeyCode.J))
             {
-                Debug.Log("Switch miss");
+                //Debug.Log("Switch miss");
             }
         }
 
@@ -214,7 +214,7 @@ public class PlayerController : MonoBehaviour
             //Debug.Log(plugConfirm);
             if (Input.GetKey(KeyCode.J))
             {
-                Debug.Log("Plug miss");
+                //Debug.Log("Plug miss");
             }
         }
     }
