@@ -198,6 +198,8 @@ MonoBehaviour:
   USBswitch: {fileID: 954268010}
   player: {fileID: 1916749672}
   playerUSB: 0
+  usbObjOrient: {fileID: 0}
+  usbPlugOrient: {fileID: 0}
   interactGrid: {fileID: 1257451455}
 --- !u!4 &185923579
 Transform:
@@ -6762,6 +6764,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 175415620982422861, guid: 7877996026159a841b39a2b213865e09, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 175415620982422861, guid: 7877996026159a841b39a2b213865e09, type: 3}
+      propertyPath: m_UsedByEffector
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2635411015976229448, guid: 7877996026159a841b39a2b213865e09, type: 3}
       propertyPath: m_Name
       value: Player wUSB
@@ -6813,13 +6823,35 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 87865835655069221, guid: 7877996026159a841b39a2b213865e09, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1784314116}
   m_SourcePrefab: {fileID: 100100000, guid: 7877996026159a841b39a2b213865e09, type: 3}
 --- !u!1 &1784314112 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 87865835655069221, guid: 7877996026159a841b39a2b213865e09, type: 3}
   m_PrefabInstance: {fileID: 1784314111}
   m_PrefabAsset: {fileID: 0}
+--- !u!251 &1784314116
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784314112}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 90
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 0
 --- !u!1 &1916749672 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2635411015976229448, guid: 7877996026159a841b39a2b213865e09, type: 3}

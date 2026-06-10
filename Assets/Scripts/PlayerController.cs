@@ -122,9 +122,29 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if ((collision.gameObject.tag == "Ground") || (collision.gameObject.tag == "Box"))
+        if ((collision.gameObject.tag == "Ground") || (collision.gameObject.tag == "Box") /*|| (collision.gameObject.tag == "USB-Key")*/ )
         {
             grounded = true;
+        }
+        if (collision.gameObject.tag == "USB-Key")
+        {
+            Debug.Log("Enter key");
+        }
+    }
+    
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "USB-Key")
+        {
+            Debug.Log("Inside key");
+            grounded = true;
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "USB-Key")
+        {
+            Debug.Log("Exit key");
         }
     }
 
@@ -141,11 +161,16 @@ public class PlayerController : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
-        
+
+        if (trigger.gameObject.tag == "USB-Key")
+        {
+            Debug.Log("Enter key");
+        }
+
         if (trigger.gameObject.tag == "USB-Switch")
         {
             switchConfirm = true;
-            Debug.Log(switchConfirm);
+            //Debug.Log(switchConfirm);
             if (Input.GetKey(KeyCode.J))
             {
                 Debug.Log("Switch hit");
@@ -155,7 +180,7 @@ public class PlayerController : MonoBehaviour
         if (trigger.gameObject.tag == "USB-Plug")
         {
             plugConfirm = true;
-            Debug.Log(plugConfirm);
+            //Debug.Log(plugConfirm);
             if (Input.GetKey(KeyCode.J))
             {
                 Debug.Log("Plug hit");
@@ -167,7 +192,7 @@ public class PlayerController : MonoBehaviour
         if (trigger.gameObject.tag == "USB-Switch")
         {
             switchConfirm = false;
-            Debug.Log(switchConfirm);
+            //Debug.Log(switchConfirm);
             if (Input.GetKey(KeyCode.J))
             {
                 Debug.Log("Switch miss");
@@ -177,7 +202,7 @@ public class PlayerController : MonoBehaviour
         if (trigger.gameObject.tag == "USB-Plug")
         {
             plugConfirm = false;
-            Debug.Log(plugConfirm);
+            //Debug.Log(plugConfirm);
             if (Input.GetKey(KeyCode.J))
             {
                 Debug.Log("Plug miss");
