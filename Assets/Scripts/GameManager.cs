@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                gmUSBtoPlug = true;
+                gmUSBtoPlug = false;
                 StartCoroutine(PlayerParent());
             }
         }
@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                gmUSBtoPlug = true;
+                gmUSBtoPlug = false;
                 StartCoroutine(PlayerParent());
             }
         }

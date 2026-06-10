@@ -6,13 +6,14 @@ public class Button : MonoBehaviour
 
     [SerializeField] private GameObject gameManager;
     GameManager gmScript;
+    ButtonChecker bcScript;
     [SerializeField] private GameObject objectToActivate;
 
     public bool firstActive;
     public bool buttonActive;
 
     private float doorCounter;
-    string regObjName;
+    public string regObjName;
 
     void Awake()
     {
@@ -20,6 +21,9 @@ public class Button : MonoBehaviour
         buttonActive = false;
         firstActive = false;
         gmScript = gameManager.GetComponent<GameManager>();
+        bcScript = gameManager.GetComponent<ButtonChecker>();
+        regObjName = objectToActivate.name;
+        Debug.Log(regObjName);
     }
 
     void Update()
@@ -28,19 +32,31 @@ public class Button : MonoBehaviour
         {
             //Debug.Log("Active check");
             firstActive = true;
-            if (objectToActivate.tag == "Door")
+
+            bcScript.regButtonCheck = true;
+            bcScript.ButtonCompare(1);
+            if (bcScript.noOverlapCheck)
             {
-                //Debug.Log("Door activated");
-                DoorActivate();
+                if (objectToActivate.tag == "Door")
+                {
+                    //Debug.Log("Door activated");
+                    DoorActivate();
+                }                
             }
         }
         else if (!buttonActive && firstActive)
         {
-            if (objectToActivate.tag == "Door")
+            bcScript.regButtonCheck = false;
+            bcScript.ButtonCompare(1);
+            if (!bcScript.noOverlapCheck)
             {
-                //Debug.Log("Door deactivated");
-                DoorDeactivate();
+                if (objectToActivate.tag == "Door")
+                {
+                    //Debug.Log("Door deactivated");
+                    DoorDeactivate();
+                }                
             }
+
         }
 
     }

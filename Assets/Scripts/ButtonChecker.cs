@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class ButtonChecker : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class ButtonChecker : MonoBehaviour
     {
         regScript = regButton.GetComponent<Button>();
         usbScript = usbButton.GetComponent<ButtonUSB>();
-
+        noOverlapCheck = true;
     }
 
     // Update is called once per frame
@@ -29,23 +30,23 @@ public class ButtonChecker : MonoBehaviour
     {
         // if button is on and USB is on, and if their objects share the same name, there is overlap
         
-        if (identityChecker = 1)
+        if (identityChecker == 1)
         {
             //if usb is on, and shares object name, there's overlap and you can't run
-            if(usbButtonCheck && (regObjName == usbObjName))
+            if(usbButtonCheck && (regScript.regObjName == usbScript.usbObjName))
             {
-                noOverlapCheck = false;
+                noOverlapCheck = false; //FALSE: there *is* overlap, so the USB is on and the names are the same
             }
             else
             {
-                noOverlapCheck = true;
+                noOverlapCheck = true; //TRUE: there is no overlap
             }
 
         }
-        else if (identityChecker = 2)
+        else if (identityChecker == 2)
         {
             //if button is on, and shares object name, there's overlap and you can't run
-            if(regButtonCheck && (regObjName == usbObjName))
+            if(regButtonCheck && (regScript.regObjName == usbScript.usbObjName))
             {
                 noOverlapCheck = false;
             }
@@ -56,7 +57,4 @@ public class ButtonChecker : MonoBehaviour
         }
         
     }
-
-
-
 }

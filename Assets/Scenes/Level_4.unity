@@ -490,6 +490,7 @@ MonoBehaviour:
   objectToActivate: {fileID: 1270301381}
   firstActive: 0
   buttonActive: 0
+  regObjName: 
 --- !u!1 &373467245
 GameObject:
   m_ObjectHideFlags: 0
@@ -5527,6 +5528,7 @@ MonoBehaviour:
   objectToActivate: {fileID: 1506122083}
   firstActive: 0
   buttonActive: 0
+  regObjName: 
 --- !u!1 &1239533758
 GameObject:
   m_ObjectHideFlags: 0
@@ -5584,7 +5586,7 @@ GameObject:
   - component: {fileID: 1270301383}
   - component: {fileID: 1270301382}
   m_Layer: 0
-  m_Name: Door (1)
+  m_Name: Door 2
   m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6174,6 +6176,37 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &1604420378
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1604420379}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1604420379
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604420378}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.53784, y: -0.02751, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1617800808
 GameObject:
   m_ObjectHideFlags: 0
@@ -6184,6 +6217,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1617800810}
   - component: {fileID: 1617800809}
+  - component: {fileID: 1617800811}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -6230,6 +6264,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1617800811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617800808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e8faa1d64c30e7469ab6ddb8201fa6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonChecker
+  regButton: {fileID: 229850110}
+  usbButton: {fileID: 2099048873}
+  regButtonCheck: 0
+  usbButtonCheck: 0
+  noOverlapCheck: 0
 --- !u!1001 &1689028996
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6426,7 +6477,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5167176620187242025, guid: 22ea7c88eae896845b74464c15a8a295, type: 3}
       propertyPath: m_Name
-      value: Button
+      value: Button 2
       objectReference: {fileID: 0}
     - target: {fileID: 6050775186254249276, guid: 22ea7c88eae896845b74464c15a8a295, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6577,6 +6628,7 @@ MonoBehaviour:
   objectToActivate: {fileID: 1270301381}
   usbfirstActive: 0
   usbActive: 0
+  usbObjName: 
 --- !u!1001 &599060684763248987
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6683,6 +6735,7 @@ SceneRoots:
   - {fileID: 1270301383}
   - {fileID: 599060684763248987}
   - {fileID: 2055660107}
+  - {fileID: 2099048872}
   - {fileID: 1525056398}
   - {fileID: 696682101}
   - {fileID: 19323524}
@@ -6692,5 +6745,5 @@ SceneRoots:
   - {fileID: 1239533760}
   - {fileID: 74063113}
   - {fileID: 1509327421}
-  - {fileID: 2099048872}
   - {fileID: 1451554920}
+  - {fileID: 1604420379}

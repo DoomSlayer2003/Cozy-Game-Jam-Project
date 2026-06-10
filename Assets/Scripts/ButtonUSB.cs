@@ -3,16 +3,16 @@ using System.Collections;
 
 public class ButtonUSB : MonoBehaviour
 {
-
     [SerializeField] private GameObject gameManager;
     GameManager gmScript;
+    ButtonChecker bcScript;
     [SerializeField] private GameObject objectToActivate;
 
     public bool usbfirstActive;
     public bool usbActive;
-    
+
     private float doorCounter;
-    string usbObjName;
+    public string usbObjName;
 
     void Awake()
     {
@@ -20,8 +20,9 @@ public class ButtonUSB : MonoBehaviour
         usbActive = false;
         usbfirstActive = false;
         gmScript = gameManager.GetComponent<GameManager>();
+        bcScript = gameManager.GetComponent<ButtonChecker>();
         usbObjName = objectToActivate.name;
-        Debug.Log(usbDoorName);
+        Debug.Log(usbObjName);
     }
 
     void Update()
@@ -31,9 +32,9 @@ public class ButtonUSB : MonoBehaviour
             //Debug.Log("Active check");
             usbfirstActive = true;
 
-            gmScript.usbButtonCheck = true;
-            
-            if (gmScript.noOverlapCheck)
+            bcScript.usbButtonCheck = true;
+            bcScript.ButtonCompare(2);
+            if (bcScript.noOverlapCheck)
             {
                 if (objectToActivate.tag == "Door")
                 {
@@ -44,12 +45,17 @@ public class ButtonUSB : MonoBehaviour
         }
         else if (!gmScript.gmUSBtoPlug && usbfirstActive)
         {
-            gmScript.usbButtonCheck = false;
-            if (objectToActivate.tag == "Door")
+            bcScript.usbButtonCheck = false;
+            bcScript.ButtonCompare(2);
+            if (!bcScript.noOverlapCheck)
             {
-                //Debug.Log("Door deactivated");
-                DoorDeactivate();
+                if (objectToActivate.tag == "Door")
+                {
+                    //Debug.Log("Door deactivated");
+                    DoorDeactivate();
+                }                
             }
+
         }
 
     }
