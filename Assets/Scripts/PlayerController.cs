@@ -126,10 +126,6 @@ public class PlayerController : MonoBehaviour
         {
             grounded = true;
         }
-        if (collision.gameObject.tag == "USB-Key")
-        {
-            Debug.Log("Enter key");
-        }
     }
     
     private void OnCollisionStay2D(Collision2D collision)
@@ -165,6 +161,7 @@ public class PlayerController : MonoBehaviour
         if (trigger.gameObject.tag == "USB-Key")
         {
             Debug.Log("Enter key");
+            grounded = true;
         }
 
         if (trigger.gameObject.tag == "USB-Switch")
@@ -187,6 +184,16 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+    private void OnTriggerStay2D(Collider2D trigger)
+    {
+        if (trigger.gameObject.tag == "USB-Key")
+        {
+            Debug.Log("Inside key");
+            grounded = true;
+        }
+    }
+
     private void OnTriggerExit2D(Collider2D trigger)
     {
         if (trigger.gameObject.tag == "USB-Switch")
