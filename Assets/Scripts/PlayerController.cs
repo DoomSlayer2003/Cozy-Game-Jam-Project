@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float jumpForce;
     private bool grounded;
+
+    public AudioSource audioPlayer; // public class for audio when collided with object
     
     // tells if we are within trigger of USB block/plug to switch USB location
     public bool plugConfirm;
@@ -215,6 +217,16 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Plug miss");
             }
         }
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Goal") //Will play audio if player collides with object of tag "Goal"
+
+        {
+            audioPlayer.Play();
+        }
+
     }
 
 }
